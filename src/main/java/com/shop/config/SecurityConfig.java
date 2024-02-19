@@ -21,14 +21,14 @@ public class SecurityConfig {
     @Autowired
     MemberService memberService;
     @Autowired
-    private PrincipalOauth2UserService principalOauth2UserService;
+    private CustomOAuth2UserService customOAuth2UserService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests(auth -> auth
                         .requestMatchers("/css/**", "/js/**","/images/**","/favicon.ico","/error").permitAll()
                         .requestMatchers("/","/members/**","/item/**","/dessert/**","/faq/**","/img/**").permitAll()
-                        .requestMatchers("/map/**").permitAll()
+                        .requestMatchers("/map/**,/kakao/**").permitAll()
                         .requestMatchers("/faq/boardLists").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/faq/write").hasRole("ADMIN")
@@ -47,7 +47,7 @@ public class SecurityConfig {
                 .oauth2Login(oauthLogin -> oauthLogin
                         .defaultSuccessUrl("/")
                         .userInfoEndpoint(userInfoEndpointConfig -> userInfoEndpointConfig
-                                .userService(principalOauth2UserService))
+                                .userService(customOAuth2UserService))
                 );
 
         http.exceptionHandling(exception -> exception

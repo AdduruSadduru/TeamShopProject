@@ -22,5 +22,6 @@ public class ItemSearchDto {
 
     private Dessert searchDessertType;
 
+
     private List<Board> boardList;
 }

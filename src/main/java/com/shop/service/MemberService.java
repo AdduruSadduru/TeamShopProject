@@ -45,10 +45,17 @@ public class MemberService implements UserDetailsService {
                 .build();
     }
     public String loadMemberEmail(Principal principal, HttpSession httpSession) { // 외부 로그인 멤버 와 회원가입 폼 Dto 로 들어온 멤버 분기
+        String userEmail = "";
+        Member member1 = ((Member) httpSession.getAttribute("user"));
+
         if (principal != null) {
-            if (httpSession.getAttribute("user") != null) {
-                return (String) httpSession.getAttribute("email");
+            if (member1 != null) {
+                String email = (String) httpSession.getAttribute("email");
+                memberRepository.save(member1);
+                return email;
             } else {
+                userEmail = principal.getName();
+                System.out.println(userEmail + " memberService3");
                 return principal.getName();
             }
         }
@@ -60,15 +67,19 @@ public class MemberService implements UserDetailsService {
 
         if (principal != null) {
             if (httpSession.getAttribute("user") != null) {
+
+                System.out.println(MemberName );
+
                 return MemberName;
-            } else {
+            }
+            else {
                 userName = principal.getName();
                 Member member = memberRepository.findByEmail(userName);
-                    return member.getName();
-                }
+                return member.getName();
             }
-                return null;
         }
+        return null;
+    }
     public Member findMember(HttpSession httpSession, Principal principal) {
         String email = loadMemberEmail(principal, httpSession);
         return memberRepository.findByEmail(email);

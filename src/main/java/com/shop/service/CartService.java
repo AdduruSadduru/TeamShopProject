@@ -1,6 +1,4 @@
 package com.shop.service;
-
-import com.shop.config.Oauth2UserInfo;
 import com.shop.dto.CartDetailDto;
 import com.shop.dto.CartItemDto;
 import com.shop.dto.CartOrderDto;
@@ -19,11 +17,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.thymeleaf.util.StringUtils;
-
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -118,4 +114,6 @@ public class CartService {
         return orderId;
     }
 
+    public void saveCart(Member member) {
+    }
 }

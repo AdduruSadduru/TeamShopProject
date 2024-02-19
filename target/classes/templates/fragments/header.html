@@ -63,10 +63,10 @@
                                 <li sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
                                     <a class="dropdown-item" href="/admin/items">상품 관리</a>
                                 </li>
-                                <li sec:authorize="isAuthenticated()">
+                                <li sec:authorize="hasAnyAuthority('ROLE_USER')">
                                     <a class="dropdown-item" href="/cart">장바구니</a>
                                 </li>
-                                <li sec:authorize="isAuthenticated()">
+                                <li sec:authorize="hasAnyAuthority('ROLE_USER')">
                                     <a class="dropdown-item" href="/orders">구매이력</a>
                                 </li>
                                 <li sec:authorize="isAuthenticated()">

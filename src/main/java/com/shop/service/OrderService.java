@@ -82,7 +82,7 @@ public class OrderService {
         if(!StringUtils.equals(curMember.getEmail(), savedMember.getEmail())){
             return false;
         }
-            return  true;
+        return  true;
     }
 
     public void cancelOrder(Long orderId){
