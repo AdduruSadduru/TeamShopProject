@@ -36,7 +36,7 @@ public class ItemController {
         String name = memberService.loadMemberName(principal,httpSession);
         model.addAttribute("name",name);
         model.addAttribute("itemFormDto",new ItemFormDto());
-        return "/item/itemForm";
+        return "item/itemForm";
     }
     @GetMapping("/item/test")
     public String test(Model model) {

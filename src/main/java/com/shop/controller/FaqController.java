@@ -47,7 +47,7 @@ public class FaqController {
         String name = memberService.loadMemberName(principal, httpSession);
         model.addAttribute("name", name);
         model.addAttribute("maxPage", 5);
-        return "/faq/board";
+        return "faq/board";
     }
 
     @GetMapping(value = "/write")
@@ -55,7 +55,7 @@ public class FaqController {
         String name = memberService.loadMemberName(principal, httpSession);
         model.addAttribute("name", name);
         model.addAttribute("writeFormDto", writeFormDto);
-        return "/faq/writeBoardForm";
+        return "faq/writeBoardForm";
     }
 
     @PostMapping(value = "/write")
@@ -64,7 +64,7 @@ public class FaqController {
         if (bindingResult.hasErrors()) {
             String name = memberService.loadMemberName(principal, httpSession);
             model.addAttribute("name", name);
-            return "/faq/writeBoardForm";
+            return "faq/writeBoardForm";
         }
         Board board = boardService.writeBoard(writeFormDto, principal, httpSession);
         boardRepository.save(board);
@@ -91,7 +91,7 @@ public class FaqController {
         }
 
 
-        return "/faq/userBoardDetail";
+        return "faq/userBoardDetail";
     }
 
     @GetMapping(value = "/boardDetail/{id}")
@@ -101,7 +101,7 @@ public class FaqController {
         System.out.println(writeFormDto);
         model.addAttribute("writeFormDto", writeFormDto);
         model.addAttribute("name", name);
-        return "/faq/boardDetail";
+        return "faq/boardDetail";
     }
 
     @PostMapping(value = "/update/{id}")
@@ -110,7 +110,7 @@ public class FaqController {
         String name = memberService.loadMemberName(principal, httpSession);
         model.addAttribute("name", name);
         if (bindingResult.hasErrors()) {
-            return "/faq/boardDetail";
+            return "faq/boardDetail";
         }
         boardService.BoardAs(writeFormDto, boardId);
         return "redirect:/faq/boardLists";

@@ -26,7 +26,7 @@ public class ProfileController {
         String name = memberService.loadMemberName(principal,httpSession);
         model.addAttribute("name",name);
         model.addAttribute("memberASDto", memberASDto);
-        return "/member/memberProfile";
+        return "member/memberProfile";
     }
 
     @PostMapping(value = "/myInfoAS")
@@ -35,7 +35,7 @@ public class ProfileController {
         String name = memberService.loadMemberName(principal,httpSession);
         model.addAttribute("name",name);
         if (bindingResult.hasErrors()) {
-            return "/member/memberProfile";
+            return "member/memberProfile";
         }
         memberService.memberAS(memberASDto);
         return "redirect:/";

@@ -56,7 +56,7 @@ public class CartController {
         model.addAttribute("cartItems",cartDetailDtoList);
         String name = memberService.loadMemberName(principal,httpSession);
         model.addAttribute("name",name);
-        return "/cart/cartList";
+        return "cart/cartList";
     }
 
     @PatchMapping(value = "/cartItem/{cartItemId}")
